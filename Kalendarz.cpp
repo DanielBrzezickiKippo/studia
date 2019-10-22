@@ -1,22 +1,21 @@
-﻿#include "pch.h"
+#include "pch.h"
 #include <iostream>
 #include <stdio.h>
-int count_days(int day, int month, int year) {
+int count_days(int day, int month, int year){
 	int sum = 0;
 	int i = 1970;
-	int j = 1;
+	int j = 1; 
 
-	int rok_przystepny = 366;
+	int rok_przestepny = 366;
 	int rok = 365;
 	int days_in_month = 0;
 	int february = 0;
 	int all_days = 0;
-	//int first_day_of_month;
 
 	while (i <= year) {
 		if (i != year) {
 			if (i % 4 == 0 && i % 100 != 0 || i % 400 == 0) {
-				sum += rok_przystepny;
+				sum += rok_przestepny;
 			}
 			else {
 				sum += rok;
@@ -79,13 +78,14 @@ int count_days(int day, int month, int year) {
 					all_days = day + days_in_month + sum;
 				}
 				j++;
+
 			}
 		}
 		i++;
 	}
-	//printf_s("%d", all_days);
 	return all_days;
 }
+
 int show_day(int all_days, int day, int month, int year) {
 	if (all_days % 7 == 0) {
 		printf_s("\nDzien: %d. %d. %d to sroda.\n", day, month, year);
@@ -110,9 +110,8 @@ int show_day(int all_days, int day, int month, int year) {
 	}
 	return 0;
 }
+
 int show_calendar(int all_days,int day, int month, int year) {
-	//warunki dla miesiecy obliczają dni
-	//warunek na przestępny oblicza + 1 dla powyżej lutego
 	int sum_of_days = all_days - day + 1;
 	int day_begin = (sum_of_days + 2) % 7;
 	int day_of_month;
@@ -120,6 +119,7 @@ int show_calendar(int all_days,int day, int month, int year) {
 	int date = 0;
 
 	printf_s("\n Pn Wt Sr Cz Pt Sb Nd\n");
+
 	if (month == 2 && year % 4 == 0 && year % 100 != 0 || month == 2 && year % 400 == 0) {
 		day_of_month = 29;
 	}
@@ -142,7 +142,7 @@ int show_calendar(int all_days,int day, int month, int year) {
 				printf_s(" %d", date);
 			}
 			else {
-				printf_s("  %d", date);
+				printf_s("  %d", date); 
 			}
 		}
 		column++;
@@ -150,7 +150,7 @@ int show_calendar(int all_days,int day, int month, int year) {
 			printf_s("\n");
 		}
 	}
-	if (year % 4 == 0) {
+	if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
 		printf_s("\nRok jest przestepny.");
 	}
 	else {
@@ -158,15 +158,34 @@ int show_calendar(int all_days,int day, int month, int year) {
 	}
 	return 0;
 }
-int main(){
-	int all_days, day, month, year;
+
+int get_value_day() {
+	int day;
 	printf_s("Podaj dzien: ");
 	scanf_s("%d", &day);
+	return day;
+}
+int get_value_month() {
+	int month;
 	printf_s("Podaj miesiac: ");
 	scanf_s("%d", &month);
+	return month;
+}
+int get_value_year() {
+	int year;
 	printf_s("Podaj rok: ");
 	scanf_s("%d", &year);
-	count_days(day, month, year);
+	return year;
+}
+
+int main(){
+
+	int all_days, day, month, year;
+
+	day = get_value_day();
+	month = get_value_month();
+	year = get_value_year();
+
 	all_days = count_days(day, month, year);
 	show_day(all_days, day, month, year);
 	show_calendar(all_days,day, month, year);
