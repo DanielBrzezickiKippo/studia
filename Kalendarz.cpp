@@ -159,32 +159,28 @@ int show_calendar(int all_days,int day, int month, int year) {
 	return 0;
 }
 
-int get_value_day() {
-	int day;
-	printf_s("Podaj dzien: ");
-	scanf_s("%d", &day);
-	return day;
-}
-int get_value_month() {
-	int month;
-	printf_s("Podaj miesiac: ");
-	scanf_s("%d", &month);
-	return month;
-}
-int get_value_year() {
-	int year;
-	printf_s("Podaj rok: ");
-	scanf_s("%d", &year);
-	return year;
+int get_value(int value) {
+	int variable;
+	if (value == 1){
+		printf_s("Podaj dzien: ");
+	}
+	else if (value == 2){
+		printf_s("Podaj miesiac: ");
+	}
+	else if (value == 3) {
+		printf_s("Podaj rok: ");
+	}
+	scanf_s("%d", &variable);
+	return variable;
 }
 
 int main(){
 
 	int all_days, day, month, year;
 
-	day = get_value_day();
-	month = get_value_month();
-	year = get_value_year();
+	day = get_value(1);
+	month = get_value(2);
+	year = get_value(3);
 
 	all_days = count_days(day, month, year);
 	show_day(all_days, day, month, year);
