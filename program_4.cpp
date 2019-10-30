@@ -1,18 +1,20 @@
-﻿#include "pch.h"
+#include "pch.h"
 #include <iostream>
-#include <math.h>
+
+float pi = 3.14159265359;
+
 float add(float a, float b) {
 	return a + b;
 }
 
 void test_add(void)
 {
-	printf_s(" Test 1: \n\t Oczekiwano : 4.1, \n\t a uzyskano : %g\n", add (2.1,2.0));
-	printf_s(" Test 2: \n\t Oczekiwano : 0.1, \n\t a uzyskano : %g\n", add (0.1,0.0));
-	printf_s(" Test 3: \n\t Oczekiwano : 2.14, \n\t a uzyskano : %g\n", add (2.09,0.05));
-	printf_s(" Test 4: \n\t Oczekiwano : 7.77, \n\t a uzyskano : %g\n", add (2.77,5.0));
-	printf_s(" Test 5: \n\t Oczekiwano : 42, \n\t a uzyskano : %g\n", add (42,0));
-	printf_s(" Test 6: \n\t Oczekiwano : 0.000000001, \n\t a uzyskano : %g\n", add (0.000000001,0.0));
+	printf_s(" Test 1: \n\t Oczekiwano : 4.1, \n\t a uzyskano : %g\n", add(2.1, 2.0));
+	printf_s(" Test 2: \n\t Oczekiwano : 0.1, \n\t a uzyskano : %g\n", add(0.1, 0.0));
+	printf_s(" Test 3: \n\t Oczekiwano : 2.14, \n\t a uzyskano : %g\n", add(2.09, 0.05));
+	printf_s(" Test 4: \n\t Oczekiwano : 7.77, \n\t a uzyskano : %g\n", add(2.77, 5.0));
+	printf_s(" Test 5: \n\t Oczekiwano : 42, \n\t a uzyskano : %g\n", add(42, 0));
+	printf_s(" Test 6: \n\t Oczekiwano : 0.000000001, \n\t a uzyskano : %g\n", add(0.000000001, 0.0));
 }
 
 float sub(float a, float b) {
@@ -56,26 +58,32 @@ void test_div(void)
 	printf_s(" Test 6: \n\t Oczekiwano : 0, \n\t a uzyskano : %g\n", div(0.000000001, 0.0));
 }
 
+double sin(double a) {
+	return a * (pi/180);
+}
 
 void test_sin(void)
 {
-	printf_s(" Test 1: \n\t Oczekiwano : 4.1, \n\t a uzyskano : %g\n", sin(2.1, 2.0));
-	printf_s(" Test 2: \n\t Oczekiwano : 0.1, \n\t a uzyskano : %g\n", sin(0.1, 0.0));
-	printf_s(" Test 3: \n\t Oczekiwano : 2.14, \n\t a uzyskano : %g\n", sin(2.09, 0.05));
-	printf_s(" Test 4: \n\t Oczekiwano : 7.77, \n\t a uzyskano : %g\n", sin(2.77, 5.0));
-	printf_s(" Test 5: \n\t Oczekiwano : 42, \n\t a uzyskano : %g\n", sin(42, 0));
-	printf_s(" Test 6: \n\t Oczekiwano : 0.000000001, \n\t a uzyskano : %g\n", sin(0.000000001, 0.0));
+	printf_s(" Test 1: \n\t Oczekiwano : 4.1, \n\t a uzyskano : %g\nss", sin(90));
+	printf_s(" Test 2: \n\t Oczekiwano : 0.1, \n\t a uzyskano : %g\n", sin(45));
+	printf_s(" Test 3: \n\t Oczekiwano : 2.14, \n\t a uzyskano : %g\n", sin(180));
+	printf_s(" Test 4: \n\t Oczekiwano : 7.77, \n\t a uzyskano : %g\n", sin(360));
+	printf_s(" Test 5: \n\t Oczekiwano : 42, \n\t a uzyskano : %g\n", sin(60));
+	printf_s(" Test 6: \n\t Oczekiwano : 0.000000001, \n\t a uzyskano : %g\n", sin(270));
 }
 
+double cos(double a) {
+	return a * (pi/180-2*pi);
+}
 
 void test_cos(void)
 {
-	printf_s(" Test 1: \n\t Oczekiwano : 4.1, \n\t a uzyskano : %g\n", add(2.1, 2.0));
-	printf_s(" Test 2: \n\t Oczekiwano : 0.1, \n\t a uzyskano : %g\n", add(0.1, 0.0));
-	printf_s(" Test 3: \n\t Oczekiwano : 2.14, \n\t a uzyskano : %g\n", add(2.09, 0.05));
-	printf_s(" Test 4: \n\t Oczekiwano : 7.77, \n\t a uzyskano : %g\n", add(2.77, 5.0));
-	printf_s(" Test 5: \n\t Oczekiwano : 42, \n\t a uzyskano : %g\n", add(42, 0));
-	printf_s(" Test 6: \n\t Oczekiwano : 0.000000001, \n\t a uzyskano : %g\n", add(0.000000001, 0.0));
+	printf_s(" Test 1: \n\t Oczekiwano : , \n\t a uzyskano : %g\n", cos(90));
+	printf_s(" Test 2: \n\t Oczekiwano : , \n\t a uzyskano : %g\n", cos(45));
+	printf_s(" Test 3: \n\t Oczekiwano : , \n\t a uzyskano : %g\n", cos(180));
+	printf_s(" Test 4: \n\t Oczekiwano : , \n\t a uzyskano : %g\n", cos(360));
+	printf_s(" Test 5: \n\t Oczekiwano : , \n\t a uzyskano : %g\n", cos(60));
+	printf_s(" Test 6: \n\t Oczekiwano : , \n\t a uzyskano : %g\n", cos(270));
 }
 
 int main()
@@ -84,4 +92,6 @@ int main()
 	test_sub();
 	test_mul();
 	test_div();
+	test_sin();
+	test_cos();
 }
