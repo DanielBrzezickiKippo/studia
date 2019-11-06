@@ -50,7 +50,7 @@ int main()
 	while (inf == 0) {
 		printf_s("Podaj znak: ");
 		sign = getch();
-		if ((sign != 's') || (sign != 'c')) {
+		if ((sign != 's') && (sign != 'c')) {
 			printf_s("Podaj liczbe: ");
 			second_num = getvalue();
 			switch (sign) {
@@ -62,19 +62,21 @@ int main()
 				break;
 			}
 		}
-		switch (sign) {
-		case '+':
-			first_num = add(first_num, second_num);
-			break;
-		case '-':
-			first_num = min(first_num, second_num);
-			break;
-		case '*':
-			first_num = mul(first_num, second_num);
-			break;
-		case '/':
-			first_num = div(first_num, second_num);
-			break;
+		else {
+			switch (sign) {
+			case '+':
+				first_num = add(first_num, second_num);
+				break;
+			case '-':
+				first_num = min(first_num, second_num);
+				break;
+			case '*':
+				first_num = mul(first_num, second_num);
+				break;
+			case '/':
+				first_num = div(first_num, second_num);
+				break;
+			}
 		}
 		printf_s("%f\n", first_num);
 	}
