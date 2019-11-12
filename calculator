@@ -42,7 +42,7 @@ int main()
 {
 	float first_num, second_num, wynik;
 	char sign;
-	int inf=0;
+	int inf = 0;
 
 	printf_s("Podaj liczbe: ");
 	first_num = getvalue();
@@ -50,9 +50,7 @@ int main()
 	while (inf == 0) {
 		printf_s("Podaj znak: ");
 		sign = getch();
-		if ((sign != 's') && (sign != 'c')) {
-			printf_s("Podaj liczbe: ");
-			second_num = getvalue();
+		if ((sign == 's') || (sign == 'c')) {
 			switch (sign) {
 			case 's':
 				first_num = m_sin(first_num);
@@ -63,6 +61,8 @@ int main()
 			}
 		}
 		else {
+			printf_s("Podaj liczbe: ");
+			second_num = getvalue();
 			switch (sign) {
 			case '+':
 				first_num = add(first_num, second_num);
