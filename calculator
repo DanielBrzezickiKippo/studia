@@ -2,6 +2,7 @@
 #include <iostream>
 #include <math.h>
 
+float pi = 3.14159265359;
 
 float add(float a, float b) {
 	return a + b;
@@ -16,10 +17,10 @@ float div(float a, float b) {
 	return a / b;
 }
 float m_sin(float a) {
-	return a;
+	return sin(a * (pi / 180.0));
 }
 float m_cos(float a) {
-	return a;
+	return cos(a * (pi / 180.0));
 }
 
 
