@@ -11,11 +11,10 @@ int main()
 	int line = 0;
 	int column = 0;
 	int counter = 0;
-
+	srand(time(NULL));
 
 	while (counter < 15) {
 		system("cls");
-		srand(time(NULL));
 		for (int i = 0; i <= 9; i++) {
 			tab[i] = rand() % 10;
 			printf_s("%d", tab[i]);
