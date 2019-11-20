@@ -85,24 +85,29 @@ int main()
 	show_values(tab3, elements);
 }
 /*<style>
-html {
-  background-image: url("kgb.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed; 
-  background-size: cover;
-}
-body
-{
-    width: 970px;
-    padding: 25px;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    margin-left: auto;
-    margin-right: auto;
-    background: rgba(255,255,255,0.5);
-    }
-    selektor { margin-bottom:  10px}
- {font-family: "Arial,serif;}
- {font-size: 1pt;}
-    
-</style>*/
+<!DOCTYPE HTML>
+<HTML lang="pl">
+	<HEAD>
+		<META charset="UTF-8">
+		<title>Tytul strony</title>
+					<style>
+			html {
+			  background-image: url("background.jpg");
+			  background-repeat: no-repeat;
+			  background-attachment: fixed; 
+			  background-size: cover;
+			}
+			body
+			{
+				width: 970px;
+				padding: 25px;
+				margin-top: 25px;
+				margin-bottom: 25px;
+				margin-left: auto;
+				margin-right: auto;
+				background: rgba(255,255,255,0.5);
+				}
+				selektor { margin-bottom:  10px}
+			 {font-family: "Arial,serif;}
+			 {font-size: 1pt;}
+		</style>*/
