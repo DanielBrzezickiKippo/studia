@@ -84,3 +84,25 @@ int main()
 	add_tabs(tab, tab2, tab3, elements);
 	show_values(tab3, elements);
 }
+/*<style>
+html {
+  background-image: url("kgb.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: cover;
+}
+body
+{
+    width: 970px;
+    padding: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255,255,255,0.5);
+    }
+    selektor { margin-bottom:  10px}
+ {font-family: "Arial,serif;}
+ {font-size: 1pt;}
+    
+</style>*/
