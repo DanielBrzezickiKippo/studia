@@ -1,0 +1,86 @@
+#include "pch.h"
+#include <iostream>
+
+int get_values(int t[10], int elements) {
+	int x;
+	printf_s("Podaj 10 cyfr:\n");
+	for (int i = 0; i < elements; i++) {
+		scanf_s("%d", &x);
+		t[i] = x;
+	}
+
+	return 0;
+}
+
+int show_values(int t[10], int elements) {
+	for (int i = 0; i < elements; i++) {
+		printf_s("%d. %d\n", i+1, t[i]);
+	}
+
+	return 0;
+}
+
+int add(int t[10], int elements) {
+	int sum = 0;
+	for (int i = 0; i < elements; i++) {
+		sum += t[i];
+	}
+
+	return sum;
+}
+
+
+int average(int t[10], int elements) {
+	return add(t, elements) /elements;
+}
+
+int min(int t[10], int elements) {
+	int min = t[0];
+	for (int i = 0; i < elements; i++) {
+		if (min > t[i]) {
+			min = t[i];
+		}
+	}
+
+	return min;
+}
+int max(int t[10], int elements) {
+	int max = t[0];
+	for (int i = 0; i < elements; i++) {
+		if (max < t[i]) {
+			max = t[i];
+		}
+	}
+
+	return max;
+}
+
+int add_tabs(int t1[10], int t2[10], int t3[10],int elements) {
+	for (int i = 0; i < elements; i++) {
+		t3[i] = t1[i] + t2[i];
+	}
+
+	return 0;
+}
+
+int main()
+{
+	int tab[10];
+	int elements = 10;
+	int tab2[10];
+	for (int i = 0; i < elements; i++) {
+		tab[i] = tab2[i] = 12-i;
+	}
+
+	int tab3[10];
+
+	//get_values(tab, elements);
+	show_values(tab, elements);
+	printf_s("Dodawanie: %d\n", add(tab, elements));
+	printf_s("Srednia: %d\n", average(tab, elements));
+	printf_s("Min: %d\n", min(tab, elements));
+	printf_s("Max: %d\n", max(tab, elements));
+
+	add_tabs(tab, tab2, tab3, elements);
+	show_values(tab3, elements);
+}
