@@ -62,8 +62,7 @@ int *add_tabs(int *t, int *t2) {
 	return tr;
 }
 
-int *get_data() {
-	int elements = SIZE;
+int *get_data(int elements) {
 	int *tab = (int *)malloc(sizeof(int)*elements);
 
 	int liczba;
@@ -71,7 +70,6 @@ int *get_data() {
 		tab[i] = tab[i] = 12-i;
 	}
 	return tab;
-	free(tab);
 }
 
 
@@ -80,13 +78,13 @@ int main()
 {
 
 	int elements=10;
-
-	show_values(get_data());
-	printf_s("Dodawanie: %d\n", add(get_data()));
-	printf_s("Srednia: %d\n", average(get_data()));
+	int * t1 = get_data(elements);
+	show_values(get_data(), elements);
+	printf_s("Dodawanie: %d\n", add(t1);
+	printf_s("Srednia: %d\n", average(t1);
 	printf_s("Min: %d\n", min(get_data()));
 	printf_s("Max: %d\n", max(get_data()));
 
 	show_values(add_tabs(get_data(), get_data()));
-
+	free(t1);
 }
