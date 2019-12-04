@@ -1,0 +1,66 @@
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void fileWrite()
+{
+	int liczba;
+
+	for (int i = 0; i < 10; i++)
+	{
+		char fileName[100];
+		sprintf_s(fileName, "outfile %d.txt ", i);
+		FILE * outputFile;
+		fopen_s(&outputFile, fileName, "w");
+		if (outputFile != NULL) {
+			for (int j = 0; j < 100; j++) {
+				liczba = rand() % 11;
+				fprintf_s(outputFile, "%d\n", liczba);
+			}
+		}
+		fclose(outputFile);
+	}
+}
+
+
+void fileRead(int* t) {
+	//int liczba=0;
+
+	t = (int *)malloc(sizeof(int) * 100);
+
+	for (int i = 0; i < 10; i++)
+	{
+		char fileName[100];
+		sprintf_s(fileName, "outfile %d.txt ", i);
+		FILE * outputFile;
+		fopen_s(&outputFile, fileName, "r");
+		if (outputFile != NULL) {
+			for (int j = 0; j < 100; j++) {
+				
+				/*if (feof(outputFile)) {
+					break;
+				}*/
+				fscanf_s(outputFile, "%d", &t[j]);
+				printf_s("%d. %d\n", j + 1, t[j]);
+			}
+		}
+		fclose(outputFile);
+	}
+}
+
+
+int main()
+{
+	//int tab[100];
+	int *tab;
+	tab = (int *)malloc(sizeof(int) * 100);
+
+	srand(time(NULL));
+
+
+	fileWrite();
+	fileRead(tab);
+	free(tab);
+}
