@@ -1,0 +1,111 @@
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void fileWrite()
+{
+	int random_num;
+
+	for (int i = 0; i < 10; i++)
+	{
+		char fileName[100];
+		sprintf_s(fileName, "outfile %d.txt ", i);
+		FILE* outputFile;
+		fopen_s(&outputFile, fileName, "w");
+		if (outputFile != NULL) {
+			for (int j = 0; j < 100; j++) {
+				random_num = rand() % 11;
+				fprintf_s(outputFile, "%d\n", random_num);
+			}
+		}
+		fclose(outputFile);
+	}
+}
+
+
+void fileRead(int* t){//, int* t_counters, int* t_counters_iar) {
+
+	int* t_counters;
+	t_counters = (int*)malloc(sizeof(int) * 2000);
+	int* t_counters_iar;
+	t_counters_iar = (int*)malloc(sizeof(int) * 2000);
+
+
+	for (int i = 0; i < 10; i++)
+	{
+		//int counter[10] = {};
+		//int counter_in_row[10] = {};
+
+		char fileName[100];
+		sprintf_s(fileName, "outfile %d.txt ", i);
+		FILE* outputFile;
+		fopen_s(&outputFile, fileName, "r");
+		if (outputFile != NULL) {
+			for (int j = 0; j < 100; j++) {
+				fscanf_s(outputFile, "%d", &t[j]);
+				printf_s("%d. %d\n", j + 1, t[j]);
+				for (int n = 0; n <= t[j]; n++) {
+					if(n==t[j]){
+						t_counters[n]++;
+						if (t[j] == t[j] - 1) {
+							t_counters_iar[n]++;
+						}
+					}
+				}
+			}
+		}
+		fclose(outputFile);
+	}
+
+	char fileName[100];
+	sprintf_s(fileName, "results.txt ");
+	FILE *outputFile;
+	fopen_s(&outputFile, fileName, "w");
+	fprintf_s(outputFile, "############# -    Liczba wystapien    -  Wystapienia z rzedu  \n");
+	fprintf_s(outputFile, "Nazwa pliku   - 0 1 2 3 4 5 6 7 8 9 10 - 0 1 2 3 4 5 6 7 8 9 10\n");
+	if (outputFile != NULL) {
+
+		for (int k = 0; k < 10; k++) {
+			fprintf_s(outputFile, "outfile %d.txt - ", k);
+			for (int l = 0; l < 11; l++) {
+				fprintf_s(outputFile, "%d ", t_counters[l]);
+			}
+			fprintf_s(outputFile, "- ");
+			for (int m = 0; m < 11; m++) {
+				fprintf_s(outputFile, "%d ", t_counters_iar[m]);
+				//printf_s("%d ", t_counters_iar[m]);
+			}
+			fprintf_s(outputFile, "\n");
+		}
+	}
+	fclose(outputFile);
+	
+}
+
+
+
+int main()
+{
+	int* tab;
+	tab = (int*)malloc(sizeof(int) * 100);
+	//int* t_counters;
+
+	//int* t_counters_iar;
+
+
+	//int t_counters[11];
+	//int t_counters_iar[11];
+
+	srand(time(NULL));
+
+
+	fileWrite();
+	//fileRead(tab,t_counters,t_counters_iar);
+	fileRead(tab);
+
+	free(tab);
+	//free(t_counters);
+	//free(t_counters_iar);
+}
