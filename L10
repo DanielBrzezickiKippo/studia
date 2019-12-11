@@ -1,0 +1,41 @@
+#include "pch.h"
+#include <iostream>
+
+
+struct Contact {
+	char name[100] = {};
+	char last_name[100] = {};
+	char num[20] = {};
+};
+
+void Create(Contact con[100]) {
+	char dane[100];
+
+	for (int i = 0; i < 100; i++) {
+		if (con[i].name != "0") {
+		
+		printf_s("Podaj imie");
+		scanf_s(" %c", dane);
+		strcpy(con[i].name, dane);
+
+		printf_s("Podaj nazwisko");
+		scanf_s(" %c", dane);
+		strcpy(con[i].last_name, dane);
+
+		printf_s("Podaj numer tel.");
+		scanf_s(" %c", dane);
+		strcpy(con[i].num, dane);
+		}
+	}
+}
+
+int main()
+{
+	struct Contact contact[100];
+	printf_s("C- Tworzenie wpisu\nR- Przegladanie danych\nU- Aktualizowanie wpisow\nD- Kasowanie istniejacych wpisow");
+
+	char dzialanie;
+	scanf
+	switch
+
+}
