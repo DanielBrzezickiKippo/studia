@@ -1,38 +1,48 @@
 #include "pch.h"
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(int argc,const char *argv[])
-{
-	printf_s("\n    *");
-	printf_s("\n   ***");
-	printf_s("\n  *****");
-	printf_s("\n *******");
-	printf_s("\n*********");
-
-	const char *napis;
 
 
-	for (int i = 0; i < argc; i++)
-	{
-		/*for (int j = cols; j >0; j--) {
-			argv[0] = " ";
-		}*/
-		for (int j = 0 ; j < argc; j++) {
-			int ilosc = j + 1;
-			if (ilosc == argc) {
-				printf_s(" %c", "*");
-			}
-			else {
-				printf_s(" %c", " ");
-				//napis[j] = " ";
-			}
+void t_1() {
+	printf_s("    #   \n");
+	printf_s("   ###  \n");
+	printf_s("  ##### \n");
+	printf_s(" #######\n");
+}
+
+void t_2() {
+	int wysokosc;
+	scanf_s("%d", &wysokosc);
+	for (int i = 0; i < wysokosc; i++) {
+		for (int spacje = wysokosc - i; spacje > 0; spacje--) {
+			printf_s(" ");
 		}
+		printf_s("#");
+		for (int choinka = 0; choinka < i; choinka++) {
+			printf_s("##");
+		}
+		printf_s("\n");
+	}
+}
 
-		//argv[i] = napis;
-		printf_s("\nArgv [%d] = > %s", i, argv[i]);
+
+int main(int argc, char* argv[])
+{
+	t_1();
+	t_2();
+	int wysokosc = atoi(argv[1]);
+	//printf_s("%d\n", wysokosc);
+
+
+	for (int i = 0; i < wysokosc; i++) {
+		for (int spacje = wysokosc - i; spacje > 0; spacje--) {
+			printf_s(" ");
+		}
+		printf_s("#");
+		for (int choinka = 0; choinka < i; choinka++) {
+			printf_s("##");
+		}
+		printf_s("\n");
 	}
 
-	return 0;
+	system("pause");
 }
