@@ -1,41 +1,183 @@
 #include "pch.h"
 #include <iostream>
-
+#include <stdio.h>
 
 struct Contact {
-	char name[100] = {};
-	char last_name[100] = {};
-	char num[20] = {};
+	int id = {};
+	char name[100] = {"Marek"};
+	char last_name[100] = {"Kozak"};
+	int num;
 };
 
-void Create(Contact con[100]) {
-	char dane[100];
-
-	for (int i = 0; i < 100; i++) {
-		if (con[i].name != "0") {
-		
-		printf_s("Podaj imie");
-		scanf_s(" %c", dane);
-		strcpy(con[i].name, dane);
-
-		printf_s("Podaj nazwisko");
-		scanf_s(" %c", dane);
-		strcpy(con[i].last_name, dane);
-
-		printf_s("Podaj numer tel.");
-		scanf_s(" %c", dane);
-		strcpy(con[i].num, dane);
-		}
+int Check(Contact a_con[100]) {
+	int count=1;
+	while (a_con[count-1].id != 0) {
+		count++;
 	}
+	a_con[count-1].id = count;
+	return count-1;
+}
+
+void Create(Contact con) {
+	char a;
+	int dane;
+
+	printf("Podaj imie\n");
+	//scanf_s("%s", a);
+	//strcpy(con[i].name, a);
+
+	printf("Podaj nazwisko\n");
+	//scanf_s("%s", a);
+	//strcpy(con[i].last_name, a);
+
+	printf("Podaj numer tel.\n");
+	scanf_s("%d", &dane);
+	con.num = dane;
+	//printf_s("%d", con.num);
+
+	//system("cls");
+}
+
+void DisplayAll(Contact con[100]) {
+	int count = 1;
+	printf("--------------------\n");
+	while (con[count-1].id != 0) {
+		printf("Kontakt nr: %d\n", con[count-1].id);
+		printf("Imie: %s\n", con[count - 1].name);
+		printf("Nazwisko: %s\n", con[count - 1].last_name);
+		printf("Numer telefonu: %d\n", con[count-1].num);
+		printf("--------------------\n");
+		count++;
+	}
+}
+
+void Display(Contact con) {
+	printf("--------------------\n");
+	printf("Id: %d\n", con.id);
+	printf("Imie: %s\n", con.name);
+	printf("Nazwisko: %s\n", con.last_name);
+	printf("Numer telefonu: %d\n", con.num);
+	printf("--------------------\n");
+}
+
+void Update(Contact a_con[100]) {
+	int i;
+	int choice;
+	int dane;
+	printf("Podaj id kontaktu, ktory chcesz edytowac\n");
+	scanf_s("%d", &i);
+	Display(a_con[i - 1]);
+
+	printf("Co chcesz edytowac\n1 - Imie\n2 - Nazwisko\n3 - Numer telefonu\n");
+	scanf_s("%d", &choice);
+
+	if (choice == 1) {
+		//printf("Podaj imie\n");
+		//scanf_s("%s", a);
+		//strcpy(con[i].name, a);
+	}
+	else if (choice == 2) {
+		//printf("Podaj nazwisko\n");
+		//scanf_s("%s", a);
+		//strcpy(con[i].last_name, a);
+	}
+	else if (choice == 3) {
+		printf("Podaj numer tel.\n");
+		scanf_s("%d", &dane);
+		a_con[i].num = dane;
+	}
+
+	printf("\nPomyslnie edytowano");
+}
+
+void Delete(Contact a_con[100]) {
+	int i;
+	printf("Podaj id kontaktu, ktory chcesz usunac\n");
+	scanf_s("%d", &i);
+
+	printf("Czy napewno chcesz usunac ten kontakt? Wpisz 1 - TAK / 2 - NIE \n");
+	int choice;
+	scanf_s("%d", &choice);
+
+	if (choice == 1) {
+		a_con[i-1].id = 0;
+		//strcpy(con.name, "");
+		//strcpy(con.last_name, "");
+		a_con[i-1].num = 0;
+	}
+}
+
+void Clear() {
+	//system("cls");
+	printf("C- Tworzenie wpisu\nR- Przegladanie danych\nU- Aktualizowanie wpisow\nD- Kasowanie istniejacych wpisow\nS- Zapisz i wyjdz\n");
+}
+
+void ReadToArray(Contact a_con[100]) {
+	struct Contact get_from_file;
+	FILE *inputFile;
+
+	fopen_s(&inputFile, "kontakty.txt", "r");
+	if (inputFile == NULL)
+	{
+		exit(1);
+	}
+
+	int j = 0;
+	while (fread(&get_from_file, sizeof(struct Contact), 1, inputFile)) {
+		a_con[j].id = get_from_file.id;
+		//contact[j].name = get_from_file.name;
+		//contact[j].last_name = get_from_file.last_name;
+		a_con[j].num = get_from_file.num;
+		j++;
+	}
+
+	fclose(inputFile);
+}
+
+void StoreContacts(Contact a_con[100]){
+	FILE *outputFile;
+
+	fopen_s(&outputFile, "kontakty.txt", "w");
+	if (outputFile == NULL) {
+		exit(1);
+	}
+
+	int contacts_max = Check(a_con);
+	for (int i = 0; i < contacts_max; i++) {
+		fwrite(&a_con[i], sizeof(struct Contact), 1, outputFile);
+	}
+
+	fclose(outputFile);
+	exit(1);
 }
 
 int main()
 {
 	struct Contact contact[100];
-	printf_s("C- Tworzenie wpisu\nR- Przegladanie danych\nU- Aktualizowanie wpisow\nD- Kasowanie istniejacych wpisow");
 
-	char dzialanie;
-	scanf
-	switch
+	ReadToArray(contact);
 
+	while(1) {
+
+		Clear();
+		char c = getchar();
+		switch (c) {
+		case 'c':
+			Create(contact[Check(contact)]);
+			break;
+		case 'r':
+			DisplayAll(contact);
+			break;
+		case 'u':
+			Update(contact);
+			break;
+		case 'd':
+			Delete(contact);
+			break;
+		case 's':
+			StoreContacts(contact);
+			break;
+		}
+	}
+	return 0;
 }
