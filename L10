@@ -1,90 +1,99 @@
 #include "pch.h"
 #include <iostream>
 #include <stdio.h>
+#include <string.h>
 
 struct Contact {
 	int id = {};
-	char name[100] = {"Marek"};
-	char last_name[100] = {"Kozak"};
+	char name[100] = {};
+	char last_name[100] = {};
 	int num;
 };
 
+void Create(Contact con);
+
 int Check(Contact a_con[100]) {
-	int count=1;
-	while (a_con[count-1].id != 0) {
+	int count = 1;
+	while (a_con[count - 1].id != 0) {
 		count++;
 	}
-	a_con[count-1].id = count;
-	return count-1;
+	a_con[count - 1].id = count;
+	return count - 1;
 }
 
 void Create(Contact con) {
-	char a;
+	char input_name[100];
 	int dane;
 
 	printf("Podaj imie\n");
-	//scanf_s("%s", a);
-	//strcpy(con[i].name, a);
+	fgets(input_name,sizeof(input_name),stdin);
+	strcpy_s(con.name, input_name);
 
 	printf("Podaj nazwisko\n");
-	//scanf_s("%s", a);
-	//strcpy(con[i].last_name, a);
+	fgets(input_name, sizeof(input_name), stdin);
+	strcpy_s(con.name, input_name);
 
 	printf("Podaj numer tel.\n");
 	scanf_s("%d", &dane);
 	con.num = dane;
-	//printf_s("%d", con.num);
-
-	//system("cls");
 }
 
-void DisplayAll(Contact con[100]) {
+/*void DisplayAll(Contact con[100]) {
 	int count = 1;
 	printf("--------------------\n");
-	while (con[count-1].id != 0) {
-		printf("Kontakt nr: %d\n", con[count-1].id);
+	while (con[count - 1].id != 0) {
+		printf("Kontakt nr: %d\n", con[count - 1].id);
 		printf("Imie: %s\n", con[count - 1].name);
 		printf("Nazwisko: %s\n", con[count - 1].last_name);
-		printf("Numer telefonu: %d\n", con[count-1].num);
+		printf("Numer telefonu: %d\n", con[count - 1].num);
 		printf("--------------------\n");
 		count++;
 	}
-}
+}*/
 
 void Display(Contact con) {
-	printf("--------------------\n");
-	printf("Id: %d\n", con.id);
-	printf("Imie: %s\n", con.name);
-	printf("Nazwisko: %s\n", con.last_name);
-	printf("Numer telefonu: %d\n", con.num);
-	printf("--------------------\n");
+	if (con.id != 0) {
+		printf("--------------------\n");
+		printf("Id: %d\n", con.id);
+		printf("Imie: %s\n", con.name);
+		printf("Nazwisko: %s\n", con.last_name);
+		printf("Numer telefonu: %d\n", con.num);
+		printf("--------------------\n");
+	}
+	else {
+		printf("Nie ma takiego kontaktu\n");
+	}
 }
 
 void Update(Contact a_con[100]) {
 	int i;
 	int choice;
 	int dane;
+	char input_name[100];
+
 	printf("Podaj id kontaktu, ktory chcesz edytowac\n");
 	scanf_s("%d", &i);
-	Display(a_con[i - 1]);
+	Display(a_con[i-1]);
 
 	printf("Co chcesz edytowac\n1 - Imie\n2 - Nazwisko\n3 - Numer telefonu\n");
 	scanf_s("%d", &choice);
 
 	if (choice == 1) {
-		//printf("Podaj imie\n");
-		//scanf_s("%s", a);
-		//strcpy(con[i].name, a);
+
+		printf("Podaj imie\n");
+		fgets(input_name, sizeof(input_name), stdin);
+		strcpy_s(a_con[i-1].name, input_name);
+
 	}
 	else if (choice == 2) {
-		//printf("Podaj nazwisko\n");
-		//scanf_s("%s", a);
-		//strcpy(con[i].last_name, a);
+		printf("Podaj nazwisko\n");
+		fgets(input_name, sizeof(input_name), stdin);
+		strcpy_s(a_con[i-1].name, input_name);
 	}
 	else if (choice == 3) {
 		printf("Podaj numer tel.\n");
 		scanf_s("%d", &dane);
-		a_con[i].num = dane;
+		a_con[i-1].num = dane;
 	}
 
 	printf("\nPomyslnie edytowano");
@@ -100,10 +109,10 @@ void Delete(Contact a_con[100]) {
 	scanf_s("%d", &choice);
 
 	if (choice == 1) {
-		a_con[i-1].id = 0;
-		//strcpy(con.name, "");
-		//strcpy(con.last_name, "");
-		a_con[i-1].num = 0;
+		a_con[i - 1].id = 0;
+		strcpy_s(a_con[i - 1].name, "");
+		strcpy_s(a_con[i - 1].last_name, "");
+		a_con[i - 1].num = 0;
 	}
 }
 
@@ -119,14 +128,17 @@ void ReadToArray(Contact a_con[100]) {
 	fopen_s(&inputFile, "kontakty.txt", "r");
 	if (inputFile == NULL)
 	{
+		FILE *outputFile;
+		fopen_s(&outputFile, "kontakty.txt", "w");
+		fclose(outputFile);
 		exit(1);
 	}
 
 	int j = 0;
 	while (fread(&get_from_file, sizeof(struct Contact), 1, inputFile)) {
 		a_con[j].id = get_from_file.id;
-		//contact[j].name = get_from_file.name;
-		//contact[j].last_name = get_from_file.last_name;
+		strcpy_s(a_con[j].name, get_from_file.name);
+		strcpy_s(a_con[j].last_name, get_from_file.last_name);
 		a_con[j].num = get_from_file.num;
 		j++;
 	}
@@ -134,7 +146,7 @@ void ReadToArray(Contact a_con[100]) {
 	fclose(inputFile);
 }
 
-void StoreContacts(Contact a_con[100]){
+void StoreContacts(Contact a_con[100]) {
 	FILE *outputFile;
 
 	fopen_s(&outputFile, "kontakty.txt", "w");
@@ -153,28 +165,36 @@ void StoreContacts(Contact a_con[100]){
 
 int main()
 {
+	int input_id;
 	struct Contact contact[100];
-
 	ReadToArray(contact);
-
-	while(1) {
-
-		Clear();
+	while (1) {
+		printf("C- Tworzenie wpisu\nR- Przegladanie danych\nU- Aktualizowanie wpisow\nD- Kasowanie istniejacych wpisow\nS- Zapisz i wyjdz\n");
 		char c = getchar();
+
+		//Clear();
 		switch (c) {
 		case 'c':
+			system("cls");
 			Create(contact[Check(contact)]);
 			break;
 		case 'r':
-			DisplayAll(contact);
+			system("cls");
+			//DisplayAll(contact);
+			printf("Podaj id kontaktu: ");
+			scanf_s("%d", &input_id);
+			Display(contact[input_id-1]);
 			break;
 		case 'u':
+			system("cls");
 			Update(contact);
 			break;
 		case 'd':
+			system("cls");
 			Delete(contact);
 			break;
 		case 's':
+			system("cls");
 			StoreContacts(contact);
 			break;
 		}
