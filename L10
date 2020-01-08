@@ -1,16 +1,19 @@
 #include "pch.h"
 #include <iostream>
 #include <stdio.h>
-#include <string.h>
 
 struct Contact {
 	int id = {};
 	char name[100] = {};
 	char last_name[100] = {};
-	int num;
+	int num = {};
 };
 
 void Create(Contact con);
+int Check(Contact a_con[100]);
+void Display(Contact con);
+void Update(Contact a_con[100]);
+void Delete(Contact a_con[100]);
 
 int Check(Contact a_con[100]) {
 	int count = 1;
@@ -23,18 +26,26 @@ int Check(Contact a_con[100]) {
 
 void Create(Contact con) {
 	char input_name[100];
+	char input_last_name[100];
 	int dane;
+	Contact c;
 
 	printf("Podaj imie\n");
-	fgets(input_name,sizeof(input_name),stdin);
-	strcpy_s(con.name, input_name);
-
-	printf("Podaj nazwisko\n");
 	fgets(input_name, sizeof(input_name), stdin);
 	strcpy_s(con.name, input_name);
+	printf("%s", con.name);
+	
+
+	printf("Podaj nazwisko\n");
+	fgets(input_last_name, sizeof(input_last_name), stdin);
+	strcpy_s(c.last_name, input_last_name);
+	printf("%s", c.name);
+
+
 
 	printf("Podaj numer tel.\n");
 	scanf_s("%d", &dane);
+	c.num = dane;
 	con.num = dane;
 }
 
@@ -70,10 +81,11 @@ void Update(Contact a_con[100]) {
 	int choice;
 	int dane;
 	char input_name[100];
+	char input_last_name[100];
 
 	printf("Podaj id kontaktu, ktory chcesz edytowac\n");
 	scanf_s("%d", &i);
-	Display(a_con[i-1]);
+	Display(a_con[i - 1]);
 
 	printf("Co chcesz edytowac\n1 - Imie\n2 - Nazwisko\n3 - Numer telefonu\n");
 	scanf_s("%d", &choice);
@@ -82,18 +94,18 @@ void Update(Contact a_con[100]) {
 
 		printf("Podaj imie\n");
 		fgets(input_name, sizeof(input_name), stdin);
-		strcpy_s(a_con[i-1].name, input_name);
+		strcpy_s(a_con[i - 1].name, input_name);
 
 	}
 	else if (choice == 2) {
 		printf("Podaj nazwisko\n");
-		fgets(input_name, sizeof(input_name), stdin);
-		strcpy_s(a_con[i-1].name, input_name);
+		fgets(input_last_name, sizeof(input_last_name), stdin);
+		strcpy_s(a_con[i - 1].last_name, input_last_name);
 	}
 	else if (choice == 3) {
 		printf("Podaj numer tel.\n");
 		scanf_s("%d", &dane);
-		a_con[i-1].num = dane;
+		a_con[i - 1].num = dane;
 	}
 
 	printf("\nPomyslnie edytowano");
@@ -168,35 +180,37 @@ int main()
 	int input_id;
 	struct Contact contact[100];
 	ReadToArray(contact);
-	while (1) {
-		printf("C- Tworzenie wpisu\nR- Przegladanie danych\nU- Aktualizowanie wpisow\nD- Kasowanie istniejacych wpisow\nS- Zapisz i wyjdz\n");
-		char c = getchar();
-
-		//Clear();
-		switch (c) {
-		case 'c':
-			system("cls");
-			Create(contact[Check(contact)]);
-			break;
-		case 'r':
-			system("cls");
-			//DisplayAll(contact);
-			printf("Podaj id kontaktu: ");
-			scanf_s("%d", &input_id);
-			Display(contact[input_id-1]);
-			break;
-		case 'u':
-			system("cls");
-			Update(contact);
-			break;
-		case 'd':
-			system("cls");
-			Delete(contact);
-			break;
-		case 's':
-			system("cls");
-			StoreContacts(contact);
-			break;
+	while(1){
+		if (1) {
+			printf("C- Tworzenie wpisu\nR- Przegladanie danych\nU- Aktualizowanie wpisow\nD- Kasowanie istniejacych wpisow\nS- Zapisz i wyjdz\n");
+			char c[10];
+			fgets(c, sizeof(c), stdin);
+			//Clear();
+			switch (c[0]) {
+			case 'c':
+				system("cls");
+				Create(contact[Check(contact)]);
+				break;
+			case 'r':
+				system("cls");
+				//DisplayAll(contact);
+				printf("Podaj id kontaktu: ");
+				scanf_s("%d", &input_id);
+				Display(contact[input_id - 1]);
+				break;
+			case 'u':
+				system("cls");
+				Update(contact);
+				break;
+			case 'd':
+				system("cls");
+				Delete(contact);
+				break;
+			case 's':
+				system("cls");
+				StoreContacts(contact);
+				break;
+			}
 		}
 	}
 	return 0;
