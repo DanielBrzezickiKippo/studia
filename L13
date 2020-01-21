@@ -25,17 +25,17 @@ void ShowMap(char map[9][9]) {
 }
 
 void CreateMap(char map[9][9]) {
-	for (int i = 0; i < 9; i++) {
-		for (int j = 0; j < 9; j++) {
-			map[i][j] = { '.' };
-			if (i == 0 && j == 0) {
-				map[i][j] = 'X';
+	for (int y = 0; y < 9; y++) {
+		for (int x = 0; x < 9; x++) {
+			map[y][x] = { '.' };
+			if (y == 0 && x == 0) {
+				map[y][x] = 'X';
 			}
-			else if (i == 0) {
-				map[i][j] = toupper('0' + j + 48);
+			else if (y == 0) {
+				map[y][x] = toupper('0' + x + 48);
 			}
-			else if (j == 0) {
-				map[i][j] = '0' + i;
+			else if (x == 0) {
+				map[y][x] = '0' + y;
 			}
 		}
 	}
@@ -66,80 +66,43 @@ void NameFigures(Player *p) {
 		for (int j = 0; j < 9; j++) {
 			switch (j) {
 			case 0:
-				if (i == 0) {
-					strcpy_s(p[i].figura[j].name, "p");
-				}
-				else {
-					strcpy_s(p[i].figura[j].name, "P");
-				}
+				if (i == 0) strcpy_s(p[i].figura[j].name, "p");
+				else strcpy_s(p[i].figura[j].name, "P");
 				break;
 			case 1:
-				if (i == 0) {
-					strcpy_s(p[i].figura[j].name, "w");
-				}
-				else {
-					strcpy_s(p[i].figura[j].name, "W");
-				}
+				if (i == 0) strcpy_s(p[i].figura[j].name, "w");
+				else strcpy_s(p[i].figura[j].name, "W");
 				break;
 			case 2:
-				if (i == 0) {
-					strcpy_s(p[i].figura[j].name, "s");
-				}
-				else {
-					strcpy_s(p[i].figura[j].name, "S");
-				}
+				if (i == 0) strcpy_s(p[i].figura[j].name, "s");
+				else strcpy_s(p[i].figura[j].name, "S");
 				break;
 			case 3:
-				if (i == 0) {
-					strcpy_s(p[i].figura[j].name, "g");
-				}
-				else {
-					strcpy_s(p[i].figura[j].name, "G");
-				}
+				if (i == 0) strcpy_s(p[i].figura[j].name, "g");
+				else strcpy_s(p[i].figura[j].name, "G");
 				break;
 			case 4:
-				if (i == 0) {
-					strcpy_s(p[i].figura[j].name, "h");
-				}
-				else {
-					strcpy_s(p[i].figura[j].name, "H");
-				}
+				if (i == 0) strcpy_s(p[i].figura[j].name, "h");
+				else strcpy_s(p[i].figura[j].name, "H");
 				break;
 			case 5:
-				if (i == 0) {
-					strcpy_s(p[i].figura[j].name, "k");
-				}
-				else {
-					strcpy_s(p[i].figura[j].name, "K");
-				}
+				if (i == 0) strcpy_s(p[i].figura[j].name, "k");
+				else strcpy_s(p[i].figura[j].name, "K");
 				break;
 			case 6:
-				if (i == 0) {
-					strcpy_s(p[i].figura[j].name, "g");
-				}
-				else {
-					strcpy_s(p[i].figura[j].name, "G");
-				}
+				if (i == 0) strcpy_s(p[i].figura[j].name, "g");
+				else strcpy_s(p[i].figura[j].name, "G");
 				break;
 			case 7:
-				if (i == 0) {
-					strcpy_s(p[i].figura[j].name, "s");
-				}
-				else {
-					strcpy_s(p[i].figura[j].name, "S");
-				}
+				if (i == 0) strcpy_s(p[i].figura[j].name, "s");
+				else strcpy_s(p[i].figura[j].name, "S");
 				break;
 			case 8:
-				if (i == 0) {
-					strcpy_s(p[i].figura[j].name, "w");
-				}
-				else {
-					strcpy_s(p[i].figura[j].name, "W");
-				}
+				if (i == 0) strcpy_s(p[i].figura[j].name, "w");
+				else strcpy_s(p[i].figura[j].name, "W");
 				break;
 			}
 		}
-
 	}
 }
 
@@ -296,4 +259,3 @@ int main()
 
 	return 0;
 }
-
