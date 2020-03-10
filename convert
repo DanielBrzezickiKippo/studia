@@ -5,6 +5,7 @@
 void count(int zeros, std::string &liczba) {
 	bool hasDot = false;
 	int counter = 0;
+
 	liczba.pop_back();
 	for (int i = liczba.length() - 1; i >= 0; i--) {
 		if (liczba.at(i) != '.') {
@@ -19,20 +20,18 @@ void count(int zeros, std::string &liczba) {
 	if (!hasDot) {
 		counter = 0;
 	}
-	else{
-		liczba.erase(liczba.length()-(counter + 1), 1); //Wyliczenie oraz usuniecie kropki
+	else {
+		liczba.erase(liczba.length() - (counter + 1), 1);
 	}
 
 	for (int i = 0; i < zeros - counter; i++) {
-
 		liczba.push_back('0');
 	}
 }
 
-void input_num() {
-	std::string liczba;
-	std::cin >> liczba;
-
+void input_num(std::string liczba) {
+	//std::string liczba;
+	//std::cin >> liczba;
 
 	switch (liczba.at(liczba.length() - 1)) {
 	case 'M':
@@ -57,9 +56,11 @@ void input_num() {
 		count(21, liczba);
 		break;
 	case 'p':
+		liczba.pop_back();
 		count(24, liczba);
 		break;
 	case 'c':
+		liczba.pop_back();
 		count(27, liczba);
 		break;
 	}
@@ -70,6 +71,8 @@ void input_num() {
 
 int main()
 {
-
-	input_num();
+	input_num("4M");
+	input_num("4.5M");
+	input_num("5B");
+	input_num("5.555Oc");
 }
