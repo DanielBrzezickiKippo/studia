@@ -29,7 +29,7 @@ void count(int zeros, std::string &liczba) {
 	}
 }
 
-void input_num(int counter) {
+void input_num() {
 	std::string liczba;
 	std::cin >> liczba;
 
@@ -70,6 +70,6 @@ void input_num(int counter) {
 
 int main()
 {
-	int counter = 0;
-	input_num(counter);
+
+	input_num();
 }
