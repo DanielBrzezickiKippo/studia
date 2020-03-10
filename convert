@@ -2,6 +2,16 @@
 #include <iostream>
 #include <string>
 
+/*class number{
+public:
+	void convert(int zeros, std::string liczba);
+};
+
+number::convert(int zeros, std::string liczba) {
+
+}*/
+
+
 void count(int zeros, std::string &liczba) {
 	bool hasDot = false;
 	int counter = 0;
