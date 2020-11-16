@@ -239,7 +239,7 @@ int main()
 	ht->Clear();*/
 
 
-	const int MAX_ORDER = 2; // maksymalny rzad wielkosci dodawanych danych
+	const int MAX_ORDER = 5; // maksymalny rzad wielkosci dodawanych danych
 	for (int o = 1; o <= MAX_ORDER; o++)
 	{
 		const int n = pow(10, o); // rozmiar danych
